@@ -1,4 +1,4 @@
-% % EEG preprocessing
+% % EEG preprocessing with EEGLAB
 % % author:finch
 % % this pipline follows these steps:
 %1. Importing raw EEG data and behavioral data, rejectd events according to your standard
@@ -121,7 +121,7 @@ pop_ADJUST_interface(ALLEEG, EEG, CURRENTSET);
 input('ICA selection finished?');
 reject_component=find(EEG.reject.gcompreject==1);
 show=sprintf('ica%d  ',reject_component);
-display('ICA you selected£º');
+display('ICA you selectedÂ£Âº');
 display(show);
 com='';
     % check the result,if not good enough, select ICA again
@@ -133,7 +133,7 @@ while isempty(com)
         input('ICA selection finished?');
         reject_component=find(EEG.reject.gcompreject==1);
         show=sprintf('ica%d  ',reject_component);         
-        display('ICA you selected£º');
+        display('ICA you selectedÂ£Âº');
         display(show);
     end
 end
