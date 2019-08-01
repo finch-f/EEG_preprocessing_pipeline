@@ -16,6 +16,7 @@ close all;
 clc;
 eeglab;
 %% define parameters
+cd 'your dataset path'
 sub_name='S1'
 marks={'66','88','55','99'};
 high_pass=0.01;
@@ -29,7 +30,7 @@ save_path='';
 
 %% load data, merge behavioral data with EEG 
 sub_name=['event_',sub_name];
-EEG = pop_loadcnt('D:\S1.cnt')
+EEG = pop_loadcnt() % dialogue open file
 % load electrodes file
 EEG = pop_chanedit(EEG, 'lookup','C:\Program Files\MATLAB\R2014a\toolbox\eeglab13_4_4b\plugins\dipfit2.3\standard_BESA\standard-10-5-cap385.elp');
 EEG = eeg_checkset( EEG );
