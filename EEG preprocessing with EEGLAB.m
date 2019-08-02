@@ -24,7 +24,7 @@ low_pass=30;
 reref='earlobes'  % bilateral earlobes or average re-reference
 first_epoch=[-0.8,1.5];
 epoch=[-0.2,0.8];
-baseline=[-0.2,0];
+baseline=[-200,0];
 bad_range=[-70,70];
 save_path='';
 
@@ -160,13 +160,13 @@ end
 
 %% baseline correction and epoch
 for i=1:size(marks,2)
-    EEGn = pop_epoch( EEG, {mark{i}}, epoch, 'newname', ['_',num2str(marks{i})], 'epochinfo', 'yes');
+    EEGn = pop_epoch( EEG, {marks{i}}, epoch, 'newname', ['_',num2str(marks{i})], 'epochinfo', 'yes');
     EEGn = pop_rmbase(EEGn, baseline);
     EEGn = pop_eegthresh(EEGn,1,1:62 ,bad_range(1),bad_range(2),epoch(1),epoch(2),0,0);
     EEGn = eeg_checkset( EEGn );
     reject_number=find(EEGn.reject.rejthresh==1);
     EEGn = eeg_rejsuperpose( EEGn, 1, 1, 1, 1, 1, 1, 1, 1);
     EEGn = pop_rejepoch( EEGn, reject_number ,0);
-    pop_saveset( EEGn, 'filename',[sub_name,'_',num2str(file_name{i}),'.set'],'filepath',save_path);
+    pop_saveset( EEGn, 'filename',[sub_name,'_',num2str(marks{i}),'.set'],'filepath',save_path);
     clear EEGn
 end
